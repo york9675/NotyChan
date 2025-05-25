@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9808851F2DD06C8F00D7BD32 /* NotyChanWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 980885122DD06C8C00D7BD32 /* NotyChanWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9808851F2DD06C8F00D7BD32 /* NotyChanWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 980885122DD06C8C00D7BD32 /* NotyChanWatch Watch App.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		980885352DD06D2B00D7BD32 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9808852F2DD06D2B00D7BD32 /* ContentView.swift */; };
 		980885362DD06D2B00D7BD32 /* FolderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980885302DD06D2B00D7BD32 /* FolderListView.swift */; };
 		980885372DD06D2B00D7BD32 /* NoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980885312DD06D2B00D7BD32 /* NoteListView.swift */; };
@@ -23,6 +23,7 @@
 		980885482DD06E4A00D7BD32 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980885412DD06E4A00D7BD32 /* Folder.swift */; };
 		980885492DD06E4A00D7BD32 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980885432DD06E4A00D7BD32 /* Note.swift */; };
 		9808854A2DD06E4A00D7BD32 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 980885422DD06E4A00D7BD32 /* Localizable.xcstrings */; };
+		981322AE2DE2B9E500B0BD17 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981322AD2DE2B9E500B0BD17 /* CameraView.swift */; };
 		981B8AB12DD20DBB0045F520 /* NoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B8AB02DD20DBB0045F520 /* NoteImage.swift */; };
 		981B8AB32DD20EAA0045F520 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B8AB22DD20EAA0045F520 /* GalleryView.swift */; };
 		981B8AB42DD20EF90045F520 /* NoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B8AB02DD20DBB0045F520 /* NoteImage.swift */; };
@@ -57,6 +58,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		980E5DA62DD5DBFF0087D6FE /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		983BE27F2DCEEB7700BEE2D3 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -84,6 +95,7 @@
 		980885412DD06E4A00D7BD32 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		980885422DD06E4A00D7BD32 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		980885432DD06E4A00D7BD32 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		981322AD2DE2B9E500B0BD17 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		981B8AB02DD20DBB0045F520 /* NoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteImage.swift; sourceTree = "<group>"; };
 		981B8AB22DD20EAA0045F520 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 		981B8ABB2DD217930045F520 /* ImageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailView.swift; sourceTree = "<group>"; };
@@ -199,6 +211,7 @@
 				98D3BCE62DCE39BA00801ED6 /* NoteEditorView.swift */,
 				98D3BCE42DCE39BA00801ED6 /* MoveToFolderView.swift */,
 				981B8AB22DD20EAA0045F520 /* GalleryView.swift */,
+				981322AD2DE2B9E500B0BD17 /* CameraView.swift */,
 				981B8ABF2DD227400045F520 /* GalleryOverviewView.swift */,
 				981B8ABB2DD217930045F520 /* ImageDetailView.swift */,
 				98D3BCEC2DCE39BA00801ED6 /* SettingsView.swift */,
@@ -246,6 +259,7 @@
 				981C79302DCCBD6600A5D7F7 /* Frameworks */,
 				981C79312DCCBD6600A5D7F7 /* Resources */,
 				983BE27F2DCEEB7700BEE2D3 /* Embed Watch Content */,
+				980E5DA62DD5DBFF0087D6FE /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -365,6 +379,7 @@
 				98D3BD002DCE40D300801ED6 /* BiometricAuth.swift in Sources */,
 				98D3BCFA2DCE39BA00801ED6 /* NotyChanApp.swift in Sources */,
 				98D3BCFB2DCE39BA00801ED6 /* RecentlyDeletedView.swift in Sources */,
+				981322AE2DE2B9E500B0BD17 /* CameraView.swift in Sources */,
 				98D3BCFC2DCE39BA00801ED6 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,6 +389,7 @@
 /* Begin PBXTargetDependency section */
 		9808851E2DD06C8F00D7BD32 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 980885112DD06C8C00D7BD32 /* NotyChanWatch Watch App */;
 			targetProxy = 9808851D2DD06C8F00D7BD32 /* PBXContainerItemProxy */;
 		};
@@ -576,6 +592,8 @@
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotyChan;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID is required to unlock your notes.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs access to your photo library to insert images in notes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -612,6 +630,8 @@
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotyChan;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID is required to unlock your notes.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs access to your photo library to insert images in notes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

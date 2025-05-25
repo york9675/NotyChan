@@ -227,39 +227,41 @@ struct FolderListView: View {
 
                     ToolbarItem(placement: .topBarTrailing) {
                         HStack {
-                            Menu {
-                                Button {
-                                    isSelecting = true
-                                    selectedFolderIds.removeAll()
-                                } label: {
-                                    Label("Select Folders", systemImage: "checkmark.circle")
-                                }
-
-                                Divider()
-
+                            if !folders.isEmpty {
                                 Menu {
-                                    Picker("Sort by", selection: $sortOptions.field) {
-                                        ForEach(FolderSortField.allCases) { field in
-                                            Text(field.displayName).tag(field)
-                                        }
+                                    Button {
+                                        isSelecting = true
+                                        selectedFolderIds.removeAll()
+                                    } label: {
+                                        Label("Select Folders", systemImage: "checkmark.circle")
                                     }
-                                    .pickerStyle(.inline)
-                                } label: {
-                                    Label("Sort by", systemImage: "arrow.up.arrow.down")
-                                }
-
-                                Menu {
-                                    Picker("Sort order", selection: $sortOptions.order) {
-                                        ForEach(FolderSortOrder.allCases) { order in
-                                            Text(order.displayName).tag(order)
+                                    
+                                    Divider()
+                                    
+                                    Menu {
+                                        Picker("Sort by", selection: $sortOptions.field) {
+                                            ForEach(FolderSortField.allCases) { field in
+                                                Text(field.displayName).tag(field)
+                                            }
                                         }
+                                        .pickerStyle(.inline)
+                                    } label: {
+                                        Label("Sort by", systemImage: "arrow.up.arrow.down")
                                     }
-                                    .pickerStyle(.inline)
+                                    
+                                    Menu {
+                                        Picker("Sort order", selection: $sortOptions.order) {
+                                            ForEach(FolderSortOrder.allCases) { order in
+                                                Text(order.displayName).tag(order)
+                                            }
+                                        }
+                                        .pickerStyle(.inline)
+                                    } label: {
+                                        Label("Sort order", systemImage: "arrow.up.arrow.down.circle")
+                                    }
                                 } label: {
-                                    Label("Sort order", systemImage: "arrow.up.arrow.down.circle")
+                                    Image(systemName: "ellipsis.circle")
                                 }
-                            } label: {
-                                Image(systemName: "ellipsis.circle")
                             }
                             
                             Button(action: {

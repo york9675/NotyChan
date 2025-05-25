@@ -237,41 +237,43 @@ struct NoteListView: View {
                             }
                         }
                         
-                        Button {
-                            isSelecting = true
-                            selectedNoteIds.removeAll()
-                        } label: {
-                            Label("Select Notes", systemImage: "checkmark.circle")
-                        }
-                        
-                        Divider()
-                        
-                        Menu {
-                            Picker("Sort by", selection: $sortOptions.field) {
-                                ForEach(NoteSortField.allCases) { field in
-                                    Text(field.displayName).tag(field)
-                                }
+                        if !notes.isEmpty {
+                            Button {
+                                isSelecting = true
+                                selectedNoteIds.removeAll()
+                            } label: {
+                                Label("Select Notes", systemImage: "checkmark.circle")
                             }
-                            .pickerStyle(.inline)
-                        } label: {
-                            Label("Sort by", systemImage: "arrow.up.arrow.down")
-                        }
-
-                        Menu {
-                            Picker("Sort order", selection: $sortOptions.order) {
-                                ForEach(NoteSortOrder.allCases) { order in
-                                    Text(order.displayName).tag(order)
+                            
+                            Divider()
+                            
+                            Menu {
+                                Picker("Sort by", selection: $sortOptions.field) {
+                                    ForEach(NoteSortField.allCases) { field in
+                                        Text(field.displayName).tag(field)
+                                    }
                                 }
+                                .pickerStyle(.inline)
+                            } label: {
+                                Label("Sort by", systemImage: "arrow.up.arrow.down")
                             }
-                            .pickerStyle(.inline)
-                        } label: {
-                            Label("Sort order", systemImage: "arrow.up.arrow.down.circle")
-                        }
 
-                        Divider()
-                        
-                        Toggle(isOn: $sortOptions.groupByDate) {
-                            Label("Group by Date", systemImage: "calendar")
+                            Menu {
+                                Picker("Sort order", selection: $sortOptions.order) {
+                                    ForEach(NoteSortOrder.allCases) { order in
+                                        Text(order.displayName).tag(order)
+                                    }
+                                }
+                                .pickerStyle(.inline)
+                            } label: {
+                                Label("Sort order", systemImage: "arrow.up.arrow.down.circle")
+                            }
+
+                            Divider()
+                            
+                            Toggle(isOn: $sortOptions.groupByDate) {
+                                Label("Group by Date", systemImage: "calendar")
+                            }
                         }
                     } label: {
                         Image(systemName: "ellipsis.circle")

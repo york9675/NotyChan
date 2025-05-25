@@ -111,16 +111,15 @@ struct GalleryOverviewView: View {
             }
             .padding(.top)
         }
-        .sheet(item: $selectedImageContext) { context in
+        .fullScreenCover(item: $selectedImageContext) { context in
             ImageDetailView(
                 note: context.note,
-                image: context.images[safe: context.initialIndex] ?? context.images[0],
+                image: context.images[context.initialIndex],
                 images: context.images,
                 initialIndex: context.initialIndex,
                 onClose: { selectedImageContext = nil }
             )
             .environmentObject(noteManager)
-            .interactiveDismissDisabled(true)
         }
     }
 }

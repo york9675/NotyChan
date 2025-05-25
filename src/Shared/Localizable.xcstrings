@@ -53,6 +53,12 @@
             "state" : "new",
             "value" : "%1$lld / %2$lld"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld / %2$lld"
+          }
         }
       },
       "shouldTranslate" : false
@@ -128,6 +134,16 @@
         }
       }
     },
+    "Add" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增"
+          }
+        }
+      }
+    },
     "Add Folder" : {
       "localizations" : {
         "zh-Hant" : {
@@ -138,12 +154,12 @@
         }
       }
     },
-    "Add photos" : {
+    "Add from Library" : {
       "localizations" : {
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "新增圖片"
+            "value" : "從圖庫新增"
           }
         }
       }
@@ -646,7 +662,8 @@
             "value" : "許可證：\n\nMIT License\n\nCopyright (c) 2022-2024 Daniel Saidi\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE."
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "Light" : {
       "localizations" : {
@@ -1159,6 +1176,16 @@
         }
       }
     },
+    "Take Photo" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拍攝圖片"
+          }
+        }
+      }
+    },
     "Tap the folder-plus icon above to create your first folder." : {
       "localizations" : {
         "zh-Hant" : {
@@ -1387,7 +1414,8 @@
             "value" : "York"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "York Development" : {
       "localizations" : {
@@ -1397,7 +1425,8 @@
             "value" : "York Development"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     }
   },
   "version" : "1.0"
