@@ -7,13 +7,11 @@ struct RecentlyDeletedView: View {
     @State private var showingDeleteConfirmation = false
     @State private var showingRestorePrompt = false
 
-    // Selection state
     @State private var isSelecting = false
     @State private var selectedNoteIds: Set<UUID> = []
     @State private var isDeleteAllConfirmationPresented = false
     @State private var isRestoreAllConfirmationPresented = false
 
-    // Empty Trash menu
     @State private var showingEmptyConfirmation = false
     @State private var showingRestoreAllConfirmation = false
 

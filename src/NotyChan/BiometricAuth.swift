@@ -5,7 +5,7 @@ enum BiometricAuth {
     static func authenticate(reason: String = "Unlock your note") async -> Bool {
         let context = LAContext()
         var error: NSError?
-        // Use deviceOwnerAuthentication to allow passcode fallback!
+        
         guard context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
             return false
         }

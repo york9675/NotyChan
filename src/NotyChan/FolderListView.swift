@@ -1,7 +1,5 @@
 import SwiftUI
 
-// MARK: - Folder Sort Enums/Struct
-
 enum FolderSortField: String, CaseIterable, Identifiable, Codable {
     case title = "Title"
     case createdDate = "Created Date"
@@ -59,15 +57,12 @@ struct FolderListView: View {
     @State private var renameFolderName: String = ""
     @State private var folderToDelete: Folder?
 
-    // Selection state
     @State private var isSelecting = false
     @State private var selectedFolderIds: Set<UUID> = []
     @State private var isDeleteConfirmationPresented = false
 
-    // Search
     @State private var searchText: String = ""
 
-    // Folder sort
     @State private var sortOptions = FolderSortOptions.load()
     
     @State private var showGallery = false
@@ -307,7 +302,6 @@ struct FolderListView: View {
                         }
                     }
                 }
-                // Rename Folder Alert
                 .alert("Rename Folder", isPresented: Binding(
                     get: { folderToRename != nil },
                     set: { if !$0 { folderToRename = nil } }
@@ -324,7 +318,6 @@ struct FolderListView: View {
                         folderToRename = nil
                     }
                 }
-                // Delete Folder Alert
                 .alert("Delete Folder", isPresented: Binding(
                     get: { folderToDelete != nil },
                     set: { if !$0 { folderToDelete = nil } }

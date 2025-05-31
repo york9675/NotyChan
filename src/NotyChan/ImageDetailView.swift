@@ -15,6 +15,7 @@ struct ImageDetailView: View {
     @State private var showFullDescription = false
     @State var images: [NoteImage]
     @State private var isZoomed: Bool = false
+    @State private var showActionMenu = false
 
     init(note: Note, image: NoteImage, images: [NoteImage], initialIndex: Int, onClose: @escaping () -> Void) {
         self.note = note
@@ -67,16 +68,24 @@ struct ImageDetailView: View {
             }
 
             VStack {
+                // Top bar
                 HStack {
                     Button(action: onClose) {
                         Image(systemName: "xmark")
                             .font(.system(size: 22, weight: .semibold))
                             .foregroundColor(.white)
-                            .padding(12)
+                            .frame(width: 44, height: 44)
                             .background(.ultraThinMaterial.opacity(0.7))
                             .clipShape(Circle())
+                            .shadow(radius: 4)
+                            .overlay(
+                                Circle()
+                                    .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                            )
                     }
+
                     Spacer()
+                    
                     if images.count > 1 {
                         Text("\(currentIndex + 1) / \(images.count)")
                             .font(.system(size: 16, weight: .semibold, design: .rounded))
@@ -86,7 +95,6 @@ struct ImageDetailView: View {
                             .background(
                                 RoundedRectangle(cornerRadius: 20)
                                     .fill(.ultraThinMaterial.opacity(0.7))
-                                    .blur(radius: 0.5)
                             )
                             .shadow(radius: 4)
                             .overlay(
@@ -94,69 +102,55 @@ struct ImageDetailView: View {
                                     .stroke(Color.white.opacity(0.2), lineWidth: 1)
                             )
                     }
+
                     Spacer()
-                    Color.clear.frame(width: 46, height: 1)
+
+                    Menu {
+                        Button {
+                            editingDescription = currentImage.description
+                            isEditingDescription = true
+                        } label: {
+                            Label("Edit Description", systemImage: "pencil")
+                        }
+                        Button(role: .destructive) {
+                            deleteConfirmation = true
+                        } label: {
+                            Label("Delete Image", systemImage: "trash")
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis")
+                            .font(.system(size: 22, weight: .semibold))
+                            .foregroundColor(.white)
+                            .frame(width: 44, height: 44)
+                            .background(.ultraThinMaterial.opacity(0.7))
+                            .clipShape(Circle())
+                            .shadow(radius: 4)
+                            .overlay(
+                                Circle()
+                                    .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                            )
+                    }
                 }
                 .padding(.horizontal)
                 .padding(.top, 10)
+                
                 Spacer()
 
-                VStack(alignment: .leading, spacing: 0) {
+                HStack(alignment: .bottom) {
                     if !currentImage.description.isEmpty {
                         DescriptionExpandableView(
                             description: currentImage.description,
                             expanded: $showFullDescription
                         )
                         .onTapGesture {
-                            withAnimation(.easeInOut(duration: 0.2)) {
+                            withAnimation(.easeInOut(duration: 0.3)) {
                                 showFullDescription.toggle()
                             }
                         }
-                        .padding(.horizontal, 22)
-                        .padding(.bottom, 10)
-                        .transition(.opacity)
+                        .padding(.leading, 22)
+                        .padding(.bottom, 30)
                     }
-
-                    HStack(spacing: 48) {
-                        Button {
-                            editingDescription = currentImage.description
-                            isEditingDescription = true
-                        } label: {
-                            VStack(spacing: 4) {
-                                Image(systemName: "pencil")
-                                    .font(.system(size: 26, weight: .regular))
-                                Text("Description")
-                                    .font(.caption2)
-                            }
-                            .foregroundColor(.white)
-                        }
-
-                        Button {
-                            deleteConfirmation = true
-                        } label: {
-                            VStack(spacing: 4) {
-                                Image(systemName: "trash")
-                                    .font(.system(size: 26, weight: .regular))
-                                Text("Delete")
-                                    .font(.caption2)
-                            }
-                            .foregroundColor(.red)
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.top, 12)
-                    .padding(.bottom, 26)
-                    .background(
-                        LinearGradient(
-                            gradient: Gradient(colors: [
-                                Color.black.opacity(0.95),
-                                Color.black.opacity(0.7),
-                                Color.black.opacity(0.5)
-                            ]),
-                            startPoint: .bottom,
-                            endPoint: .top
-                        )
-                    )
+                    Spacer()
                 }
             }
             .edgesIgnoringSafeArea(.bottom)
@@ -349,7 +343,7 @@ struct DescriptionExpandableView: View {
                         TextLineLimitDetector(
                             text: description,
                             font: .body,
-                            width: UIScreen.main.bounds.width - 110, // padding
+                            width: UIScreen.main.bounds.width - 110,
                             lineLimit: 1,
                             exceeded: $exceeded
                         )
@@ -371,17 +365,17 @@ struct DescriptionExpandableView: View {
         .padding(.vertical, 2)
         .background(
             RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .fill(.ultraThinMaterial.opacity(0.85))
+                .fill(.ultraThinMaterial.opacity(0.7))
         )
         .overlay(
             RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .stroke(Color.white.opacity(0.12), lineWidth: 1)
+                .stroke(Color.white.opacity(0.2), lineWidth: 1)
         )
         .contentShape(Rectangle())
     }
 }
 
-// Helper view to detect line limit exceeded in SwiftUI
+// Helper view to detect line limit exceeded
 struct TextLineLimitDetector: UIViewRepresentable {
     let text: String
     let font: UIFont.TextStyle

@@ -103,7 +103,6 @@
 		981C79332DCCBD6600A5D7F7 /* NotyChan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotyChan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		983BE2972DCEECDE00BEE2D3 /* NotyChan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotyChan.entitlements; sourceTree = "<group>"; };
 		983BE2982DCF3E6500BEE2D3 /* LangView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LangView.swift; sourceTree = "<group>"; };
-		9890BC102DCE41A4003AA7D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98D3BCDC2DCE39BA00801ED6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		98D3BCDE2DCE39BA00801ED6 /* AcknowledgementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsView.swift; sourceTree = "<group>"; };
 		98D3BCDF2DCE39BA00801ED6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -175,7 +174,6 @@
 		981C792A2DCCBD6600A5D7F7 = {
 			isa = PBXGroup;
 			children = (
-				9890BC102DCE41A4003AA7D2 /* Info.plist */,
 				980885442DD06E4A00D7BD32 /* Shared */,
 				98D3BCED2DCE39BA00801ED6 /* NotyChan */,
 				980885342DD06D2B00D7BD32 /* NotyChanWatch Watch App */,
@@ -211,13 +209,13 @@
 				98D3BCE62DCE39BA00801ED6 /* NoteEditorView.swift */,
 				98D3BCE42DCE39BA00801ED6 /* MoveToFolderView.swift */,
 				981B8AB22DD20EAA0045F520 /* GalleryView.swift */,
-				981322AD2DE2B9E500B0BD17 /* CameraView.swift */,
 				981B8ABF2DD227400045F520 /* GalleryOverviewView.swift */,
 				981B8ABB2DD217930045F520 /* ImageDetailView.swift */,
 				98D3BCEC2DCE39BA00801ED6 /* SettingsView.swift */,
 				983BE2982DCF3E6500BEE2D3 /* LangView.swift */,
 				98D3BCDE2DCE39BA00801ED6 /* AcknowledgementsView.swift */,
 				98D3BCE12DCE39BA00801ED6 /* DeveloperView.swift */,
+				981322AD2DE2B9E500B0BD17 /* CameraView.swift */,
 				98D3BCE82DCE39BA00801ED6 /* NoteManager.swift */,
 				98D3BCFF2DCE40D300801ED6 /* BiometricAuth.swift */,
 				9808853E2DD06D5B00D7BD32 /* WatchSyncPush.swift */,
@@ -589,11 +587,12 @@
 				DEVELOPMENT_TEAM = Z27QLJCPBB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_CFBundleDisplayName = NotyChan;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID is required to unlock your notes.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs access to your photo library to insert images in notes.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs access to your camera to add photos to your note gallery.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID is required to lock/unlock your notes.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs access to your photo library to save the pictures you take with this app to your Photos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -627,11 +626,12 @@
 				DEVELOPMENT_TEAM = Z27QLJCPBB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_CFBundleDisplayName = NotyChan;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID is required to unlock your notes.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs access to your photo library to insert images in notes.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs access to your camera to add photos to your note gallery.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID is required to lock/unlock your notes.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs access to your photo library to save the pictures you take with this app to your Photos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

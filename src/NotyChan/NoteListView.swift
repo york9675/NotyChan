@@ -57,17 +57,14 @@ struct NoteListView: View {
     @State private var sortOptions = NoteSortOptions.load()
     @State private var selectedNoteId: UUID?
 
-    // Selection state
     @State private var isSelecting = false
     @State private var selectedNoteIds: Set<UUID> = []
     @State private var isMultiMoveSheetPresented = false
     @State private var isDeleteConfirmationPresented = false
 
-    // For per-note share sheet
     @State private var noteToShare: Note? = nil
     @State private var isShareSheetPresented: Bool = false
-    
-    // Rename folder state
+
     @State private var isRenamingFolder = false
     @State private var renameFolderName = ""
     
@@ -227,56 +224,58 @@ struct NoteListView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 HStack {
-                    Menu {
-                        if let folder = folder {
-                            Button {
-                                renameFolderName = folder.name
-                                isRenamingFolder = true
-                            } label: {
-                                Label("Rename Folder", systemImage: "pencil")
-                            }
-                        }
-                        
-                        if !notes.isEmpty {
-                            Button {
-                                isSelecting = true
-                                selectedNoteIds.removeAll()
-                            } label: {
-                                Label("Select Notes", systemImage: "checkmark.circle")
-                            }
-                            
-                            Divider()
-                            
-                            Menu {
-                                Picker("Sort by", selection: $sortOptions.field) {
-                                    ForEach(NoteSortField.allCases) { field in
-                                        Text(field.displayName).tag(field)
-                                    }
+                    if folder != nil || !notes.isEmpty {
+                        Menu {
+                            if let folder = folder {
+                                Button {
+                                    renameFolderName = folder.name
+                                    isRenamingFolder = true
+                                } label: {
+                                    Label("Rename Folder", systemImage: "pencil")
                                 }
-                                .pickerStyle(.inline)
-                            } label: {
-                                Label("Sort by", systemImage: "arrow.up.arrow.down")
                             }
-
-                            Menu {
-                                Picker("Sort order", selection: $sortOptions.order) {
-                                    ForEach(NoteSortOrder.allCases) { order in
-                                        Text(order.displayName).tag(order)
-                                    }
-                                }
-                                .pickerStyle(.inline)
-                            } label: {
-                                Label("Sort order", systemImage: "arrow.up.arrow.down.circle")
-                            }
-
-                            Divider()
                             
-                            Toggle(isOn: $sortOptions.groupByDate) {
-                                Label("Group by Date", systemImage: "calendar")
+                            if !notes.isEmpty {
+                                Button {
+                                    isSelecting = true
+                                    selectedNoteIds.removeAll()
+                                } label: {
+                                    Label("Select Notes", systemImage: "checkmark.circle")
+                                }
+                                
+                                Divider()
+                                
+                                Menu {
+                                    Picker("Sort by", selection: $sortOptions.field) {
+                                        ForEach(NoteSortField.allCases) { field in
+                                            Text(field.displayName).tag(field)
+                                        }
+                                    }
+                                    .pickerStyle(.inline)
+                                } label: {
+                                    Label("Sort by", systemImage: "arrow.up.arrow.down")
+                                }
+                                
+                                Menu {
+                                    Picker("Sort order", selection: $sortOptions.order) {
+                                        ForEach(NoteSortOrder.allCases) { order in
+                                            Text(order.displayName).tag(order)
+                                        }
+                                    }
+                                    .pickerStyle(.inline)
+                                } label: {
+                                    Label("Sort order", systemImage: "arrow.up.arrow.down.circle")
+                                }
+                                
+                                Divider()
+                                
+                                Toggle(isOn: $sortOptions.groupByDate) {
+                                    Label("Group by Date", systemImage: "calendar")
+                                }
                             }
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
                         }
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
                     }
                     
                     Button {
@@ -510,7 +509,7 @@ struct NoteListView: View {
         return sorted
     }
 
-    // Group notes by "Today", "Yesterday", or date string
+    // Group notes
     private func groupedNotesByDate(_ notes: [Note]) -> [(String, [Note])] {
         let calendar = Calendar.current
         let grouped = Dictionary(grouping: notes) { note -> String in
@@ -525,7 +524,6 @@ struct NoteListView: View {
                 return formatter.string(from: note.lastEdited)
             }
         }
-        // Sort sections by date descending or ascending based on sort options
         let sorted = grouped.sorted {
             guard let d1 = grouped[$0.key]?.first?.lastEdited,
                   let d2 = grouped[$1.key]?.first?.lastEdited else { return false }
@@ -571,7 +569,7 @@ struct NoteListView: View {
     }
 }
 
-// --- New helper view for multiple note move ---
+// MARK: - MultiMoveToFolderView
 struct MultiMoveToFolderView: View {
     @EnvironmentObject var noteManager: NoteManager
     let noteIds: [UUID]

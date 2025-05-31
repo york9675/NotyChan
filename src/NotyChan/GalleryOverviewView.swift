@@ -15,6 +15,7 @@ struct GalleryOverviewView: View {
     let showFolderName: Bool
 
     @State private var selectedImageContext: ImageViewerContext? = nil
+    @State private var collapsedNotes: Set<UUID> = []
 
     func folderName(for note: Note) -> String {
         guard let folderId = note.folderId else { return String(localized: "All Notes") }
@@ -26,15 +27,28 @@ struct GalleryOverviewView: View {
             LazyVStack(spacing: 20) {
                 ForEach(notes.filter { !$0.images.isEmpty }) { note in
                     VStack(alignment: .leading, spacing: 6) {
-                        // Title row
-                        HStack(spacing: 6) {
-                            Image(systemName: "note.text")
-                                .foregroundColor(.accentColor)
-                            Text(note.title.isEmpty ? String(localized: "Untitled Note") : note.title)
-                                .font(.headline)
-                                .lineLimit(1)
-                                .truncationMode(.tail)
+                        // Title row with chevron and tap to collapse
+                        Button(action: {
+                            if collapsedNotes.contains(note.id) {
+                                collapsedNotes.remove(note.id)
+                            } else {
+                                collapsedNotes.insert(note.id)
+                            }
+                        }) {
+                            HStack(spacing: 6) {
+                                Image(systemName: collapsedNotes.contains(note.id) ? "chevron.right" : "chevron.down")
+                                    .foregroundColor(.secondary)
+                                Image(systemName: "note.text")
+                                    .foregroundColor(.accentColor)
+                                Text(note.title.isEmpty ? String(localized: "Untitled Note") : note.title)
+                                    .font(.headline)
+                                    .lineLimit(1)
+                                    .truncationMode(.tail)
+                                Spacer()
+                            }
                         }
+                        .buttonStyle(.plain)
+
                         // Folder name
                         if showFolderName {
                             HStack(spacing: 6) {
@@ -47,47 +61,50 @@ struct GalleryOverviewView: View {
                             }
                             .padding(.bottom, 2)
                         }
-                        // Images grid
-                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 84), spacing: 8)], spacing: 8) {
-                            if note.isLocked {
-                                ForEach(note.images.indices, id: \.self) { _ in
-                                    ZStack {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(Color.gray.opacity(0.25))
-                                            .frame(width: 84, height: 84)
-                                        Image(systemName: "lock.fill")
-                                            .foregroundColor(.gray)
-                                            .font(.title2)
-                                    }
-                                }
-                            } else {
-                                ForEach(note.images.indices, id: \.self) { idx in
-                                    let img = note.images[idx]
-                                    ZStack(alignment: .bottomTrailing) {
-                                        if let uiImage = noteManager.loadImage(for: note, image: img) {
-                                            Image(uiImage: uiImage)
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
+
+                        // Images grid (collapsible)
+                        if !collapsedNotes.contains(note.id) {
+                            LazyVGrid(columns: [GridItem(.adaptive(minimum: 84), spacing: 8)], spacing: 8) {
+                                if note.isLocked {
+                                    ForEach(note.images.indices, id: \.self) { _ in
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .fill(Color.gray.opacity(0.25))
                                                 .frame(width: 84, height: 84)
-                                                .clipped()
-                                                .cornerRadius(10)
-                                        } else {
-                                            Rectangle()
-                                                .fill(Color.gray.opacity(0.15))
-                                                .frame(width: 84, height: 84)
-                                                .cornerRadius(10)
-                                        }
-                                        if !img.description.isEmpty {
-                                            Image(systemName: "info.circle.fill")
-                                                .foregroundColor(.white)
-                                                .background(
-                                                    Circle().fill(Color.blue).frame(width: 18, height: 18)
-                                                )
-                                                .padding(4)
+                                            Image(systemName: "lock.fill")
+                                                .foregroundColor(.gray)
+                                                .font(.title2)
                                         }
                                     }
-                                    .onTapGesture {
-                                        selectedImageContext = ImageViewerContext(note: note, images: note.images, initialIndex: idx)
+                                } else {
+                                    ForEach(note.images.indices, id: \.self) { idx in
+                                        let img = note.images[idx]
+                                        ZStack(alignment: .bottomTrailing) {
+                                            if let uiImage = noteManager.loadImage(for: note, image: img) {
+                                                Image(uiImage: uiImage)
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .frame(width: 84, height: 84)
+                                                    .clipped()
+                                                    .cornerRadius(10)
+                                            } else {
+                                                Rectangle()
+                                                    .fill(Color.gray.opacity(0.15))
+                                                    .frame(width: 84, height: 84)
+                                                    .cornerRadius(10)
+                                            }
+                                            if !img.description.isEmpty {
+                                                Image(systemName: "info.circle.fill")
+                                                    .foregroundColor(.white)
+                                                    .background(
+                                                        Circle().fill(Color.blue).frame(width: 18, height: 18)
+                                                    )
+                                                    .padding(4)
+                                            }
+                                        }
+                                        .onTapGesture {
+                                            selectedImageContext = ImageViewerContext(note: note, images: note.images, initialIndex: idx)
+                                        }
                                     }
                                 }
                             }

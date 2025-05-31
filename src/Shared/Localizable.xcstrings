@@ -73,16 +73,6 @@
         }
       }
     },
-    "• York - UI/UX Design\n• GPT-4.1 - Code Assistance" : {
-      "localizations" : {
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "• York - UI/UX 設計\n• GPT-4.1 - Code 協助"
-          }
-        }
-      }
-    },
     "© 2025 York Development" : {
       "localizations" : {
         "zh-Hant" : {
@@ -224,6 +214,16 @@
         }
       }
     },
+    "Are you sure you want to delete the selected %lld images? This action cannot be undone." : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你確定要刪除所選取的 %lld 張圖片嗎？此操作無法復原。"
+          }
+        }
+      }
+    },
     "Are you sure you want to delete the selected folders? All notes in these folders will be moved to 'All Notes'." : {
       "localizations" : {
         "zh-Hant" : {
@@ -354,16 +354,6 @@
         }
       }
     },
-    "Contributors" : {
-      "localizations" : {
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "貢獻者"
-          }
-        }
-      }
-    },
     "Create" : {
       "localizations" : {
         "zh-Hant" : {
@@ -440,6 +430,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "刪除備忘錄"
+          }
+        }
+      }
+    },
+    "Delete Selected Images" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除選取的圖片"
           }
         }
       }
@@ -610,16 +610,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "以日期分組"
-          }
-        }
-      }
-    },
-    "Image not available" : {
-      "localizations" : {
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "圖片不可用"
           }
         }
       }
@@ -1076,6 +1066,16 @@
         }
       }
     },
+    "Select Images" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選取圖片"
+          }
+        }
+      }
+    },
     "Select Notes" : {
       "localizations" : {
         "zh-Hant" : {
@@ -1132,16 +1132,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "排序順序"
-          }
-        }
-      }
-    },
-    "Special Thanks To" : {
-      "localizations" : {
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "特別感謝"
           }
         }
       }

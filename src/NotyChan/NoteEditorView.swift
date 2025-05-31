@@ -15,12 +15,10 @@ struct NoteEditorView: View {
     @State private var saveTask: Task<Void, Never>?
     @State private var alreadyDeleted: Bool = false
 
-    // Lock state
     @State private var isUnlocked = false
     @State private var isAuthenticating = false
     @State private var authFailed = false
 
-    // Track if note content or title has changed
     @State private var hasChanges = false
     
     @State private var showGallery = false
@@ -100,7 +98,7 @@ struct NoteEditorView: View {
                         .padding(.bottom, 4)
                         .zIndex(1)
 
-                    // ---- Platform specific formatting toolbar ----
+                    // Platform specific formatting toolbar
                     #if os(macOS)
                     RichTextFormat.Toolbar(context: context)
                     #endif
@@ -121,7 +119,7 @@ struct NoteEditorView: View {
                         }
                     }
 
-                    // --- iOS Keyboard formatting toolbar at bottom ---
+                    // iOS Keyboard formatting toolbar at bottom
                     #if os(iOS)
                     RichTextKeyboardToolbar(
                         context: context,
@@ -223,7 +221,7 @@ struct NoteEditorView: View {
                     if workingNote.isLocked {
                         isUnlocked = false
                     }
-                    hasChanges = false // Reset on appear
+                    hasChanges = false
                 }
                 .onDisappear {
                     saveTask?.cancel()
@@ -308,8 +306,6 @@ struct NoteEditorView: View {
         }
     }
 
-    // MARK: - Helpers
-
     private func formattedDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -347,6 +343,7 @@ struct NoteEditorView: View {
 }
 
 // MARK: - ActivityView for Sharing
+
 import UIKit
 
 struct ActivityView: UIViewControllerRepresentable {

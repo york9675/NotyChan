@@ -17,21 +17,6 @@ struct AcknowledgementsView: View {
                 }
             }
             
-            // Contributors Section
-            Section(header: Text("Contributors")) {
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("Special Thanks To")
-                        .font(.subheadline)
-                        .foregroundColor(.primary)
-                    Text("""
-                        • York - UI/UX Design
-                        • GPT-4.1 - Code Assistance
-                        """)
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                }
-            }
-            
             // Open-Source Project Section
             Section(header: Text("Open-Source Project")) {
                 VStack(alignment: .leading, spacing: 5) {
@@ -85,12 +70,3 @@ struct AcknowledgementsView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
-
-/*
-░░░░░██████╗░░██████╗░░░░░
-░░░░██╔════╝░██╔════╝░░░░░
-░░░░██║░░██╗░██║░░██╗░░░░░
-░░░░██║░░╚██╗██║░░╚██╗░░░░
-░░░░╚██████╔╝╚██████╔╝░░░░
-░░░░░╚═════╝░░╚═════╝░░░░░
-*/
