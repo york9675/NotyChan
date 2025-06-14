@@ -126,6 +126,12 @@ struct GalleryView: View {
                                             Label("Delete", systemImage: "trash")
                                         }
                                     }
+                                } preview: {
+                                    if let uiImage = noteManager.loadImage(for: note, image: image) {
+                                        Image(uiImage: uiImage)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                    }
                                 }
                             }
                         }
