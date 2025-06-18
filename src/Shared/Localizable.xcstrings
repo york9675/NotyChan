@@ -214,6 +214,66 @@
         }
       }
     },
+    "Archive" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "封存"
+          }
+        }
+      }
+    },
+    "Archive Note" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "封存備忘錄"
+          }
+        }
+      }
+    },
+    "Archived Notes" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已封存的備忘錄"
+          }
+        }
+      }
+    },
+    "Archived notes will show up here." : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "封存的備忘錄將會在此顯示。"
+          }
+        }
+      }
+    },
+    "Archived: %@" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已封存: %@"
+          }
+        }
+      }
+    },
+    "Are you sure you want to archive this notes? You can access it from settings." : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你確定要封存此備忘錄嗎？你可以從「設定」訪問它。"
+          }
+        }
+      }
+    },
     "Are you sure you want to delete the selected %lld images? This action cannot be undone." : {
       "localizations" : {
         "zh-Hant" : {
@@ -290,6 +350,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "你確定要復原這些備忘錄嗎？"
+          }
+        }
+      }
+    },
+    "Are you sure you want to unarchive the selected notes? They will be moved back to their original locations." : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你確定要取消封存所有備忘錄嗎？它們將會被移置原來的位置。"
           }
         }
       }
@@ -380,6 +450,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "深色"
+          }
+        }
+      }
+    },
+    "Date Archived" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "封存日期"
           }
         }
       }
@@ -675,6 +755,36 @@
         }
       }
     },
+    "Lock" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "鎖定"
+          }
+        }
+      }
+    },
+    "Lock Folder" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "鎖定資料夾"
+          }
+        }
+      }
+    },
+    "Lock folder '%@'" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "鎖定資料夾 '%@'"
+          }
+        }
+      }
+    },
     "Lock Note" : {
       "localizations" : {
         "zh-Hant" : {
@@ -771,6 +881,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "沒有其他文字"
+          }
+        }
+      }
+    },
+    "No archived notes" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無封存的備忘錄"
           }
         }
       }
@@ -1005,6 +1125,16 @@
         }
       },
       "shouldTranslate" : false
+    },
+    "Search Archived Notes" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜尋已封存的備忘錄"
+          }
+        }
+      }
     },
     "Search Deleted Notes" : {
       "localizations" : {
@@ -1256,6 +1386,16 @@
         }
       }
     },
+    "This note will be moved back to its original location." : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此備忘錄將被移置原來的位置。"
+          }
+        }
+      }
+    },
     "Title" : {
       "localizations" : {
         "zh-Hant" : {
@@ -1286,6 +1426,36 @@
         }
       }
     },
+    "Unarchive" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消封存"
+          }
+        }
+      }
+    },
+    "Unarchive All" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消封存全部"
+          }
+        }
+      }
+    },
+    "Unarchive Note" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消封存備忘錄"
+          }
+        }
+      }
+    },
     "Unknown" : {
       "localizations" : {
         "zh-Hant" : {
@@ -1296,12 +1466,42 @@
         }
       }
     },
+    "Unlock" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解鎖"
+          }
+        }
+      }
+    },
     "Unlock and view on your iPhone." : {
       "localizations" : {
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "在iPhone上解鎖並查看"
+          }
+        }
+      }
+    },
+    "Unlock Folder" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解鎖資料夾"
+          }
+        }
+      }
+    },
+    "Unlock folder '%@'" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解鎖資料夾 '%@'"
           }
         }
       }

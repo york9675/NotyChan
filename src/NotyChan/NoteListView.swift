@@ -61,6 +61,8 @@ struct NoteListView: View {
     @State private var selectedNoteIds: Set<UUID> = []
     @State private var isMultiMoveSheetPresented = false
     @State private var isDeleteConfirmationPresented = false
+    @State private var isSingleDeleteConfirmationPresented = false
+    @State private var isArchiveConfirmationPresented = false
 
     @State private var noteToShare: Note? = nil
     @State private var isShareSheetPresented: Bool = false
@@ -424,18 +426,24 @@ struct NoteListView: View {
             .tint(.yellow)
         }
         .swipeActions(edge: .trailing) {
-            Button(role: .destructive) {
-                noteManager.deleteNote(note)
+            Button {
+                isSingleDeleteConfirmationPresented = true
             } label: {
                 Label("Delete", systemImage: "trash")
-                    .tint(.red)
             }
+            .tint(.red)
             Button {
                 noteToMove = note
             } label: {
                 Label("Move", systemImage: "folder")
             }
             .tint(.purple)
+            Button {
+                isArchiveConfirmationPresented = true
+            } label: {
+                Label("Archive", systemImage: "archivebox")
+            }
+            .tint(.orange)
             if (!note.isLocked) {
                 Button {
                     noteToShare = note
@@ -457,16 +465,37 @@ struct NoteListView: View {
                 Label("Move", systemImage: "folder")
             }
             Button {
+                isArchiveConfirmationPresented = true
+            } label: {
+                Label("Archive Note", systemImage: "archivebox")
+            }
+            Button {
                 noteToShare = note
             } label: {
                 Label("Share Note", systemImage: "square.and.arrow.up")
             }
             .disabled(note.isLocked)
             Button(role: .destructive) {
-                noteManager.deleteNote(note)
+                isSingleDeleteConfirmationPresented = true
             } label: {
                 Label("Delete", systemImage: "trash")
             }
+        }
+        .alert("Delete Note", isPresented: $isSingleDeleteConfirmationPresented) {
+            Button("Cancel", role: .cancel) { }
+            Button("Delete", role: .destructive) {
+                noteManager.deleteNote(note)
+            }
+        } message: {
+            Text("Are you sure you want to delete this note? You can restore it from Recently Deleted.")
+        }
+        .alert("Archive Note", isPresented: $isArchiveConfirmationPresented) {
+            Button("Cancel", role: .cancel) { }
+            Button("Archive", role: .destructive) {
+                noteManager.archiveNote(note)
+            }
+        } message: {
+            Text("Are you sure you want to archive this notes? You can access it from settings.")
         }
     }
 
@@ -477,8 +506,8 @@ struct NoteListView: View {
 
     private var filteredNotes: [Note] {
         let notes = folderFilter == nil ?
-            noteManager.getAllNotes() :
-            noteManager.getNotes(inFolder: folderFilter)
+            noteManager.getAllNotes(respectFolderLock: true) :
+            noteManager.getNotes(inFolder: folderFilter, respectFolderLock: false)
 
         if searchText.isEmpty {
             return notes

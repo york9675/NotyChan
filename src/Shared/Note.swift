@@ -10,6 +10,8 @@ struct Note: Identifiable, Codable, Equatable {
     var deletedDate: Date?
     var isPinned: Bool
     var isLocked: Bool
+    var isArchived: Bool
+    var archivedDate: Date?
     var images: [NoteImage] = []
 
     init(
@@ -22,6 +24,8 @@ struct Note: Identifiable, Codable, Equatable {
         deletedDate: Date? = nil,
         isPinned: Bool = false,
         isLocked: Bool = false,
+        isArchived: Bool = false,
+        archivedDate: Date? = nil,
         images: [NoteImage] = []
     ) {
         self.id = id
@@ -33,6 +37,8 @@ struct Note: Identifiable, Codable, Equatable {
         self.deletedDate = deletedDate
         self.isPinned = isPinned
         self.isLocked = isLocked
+        self.isArchived = isArchived
+        self.archivedDate = archivedDate
         self.images = images
     }
 }

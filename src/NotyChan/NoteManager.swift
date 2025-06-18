@@ -88,6 +88,23 @@ class NoteManager: ObservableObject {
         }
     }
     
+    // MARK: - Notes Archive/Unarchive
+    func archiveNote(_ note: Note) {
+        if let idx = notes.firstIndex(where: { $0.id == note.id }) {
+            notes[idx].isArchived = true
+            notes[idx].archivedDate = Date()
+            saveData()
+        }
+    }
+    
+    func unarchiveNote(_ note: Note) {
+        if let idx = notes.firstIndex(where: { $0.id == note.id }) {
+            notes[idx].isArchived = false
+            notes[idx].archivedDate = nil
+            saveData()
+        }
+    }
+    
     // MARK: - Folders Management
     
     func addFolder(name: String) {
@@ -118,22 +135,79 @@ class NoteManager: ObservableObject {
         saveData()
     }
     
-    // MARK: - Notes & Folders Filtering
-    
-    func getNotes(inFolder folderId: UUID? = nil, includeDeleted: Bool = false) -> [Note] {
-        return notes.filter { note in
-            let folderMatch = note.folderId == folderId
-            let deletedMatch = includeDeleted ? note.isDeleted : !note.isDeleted
-            return folderMatch && deletedMatch
+    // MARK: - Folder Lock/Unlock
+    func lockFolder(_ folder: Folder) {
+        if let idx = folders.firstIndex(where: { $0.id == folder.id }) {
+            folders[idx].isLocked = true
+            saveData()
         }
     }
     
-    func getAllNotes(includeDeleted: Bool = false) -> [Note] {
-        return notes.filter { includeDeleted ? true : !$0.isDeleted }
+    func unlockFolder(_ folder: Folder) {
+        if let idx = folders.firstIndex(where: { $0.id == folder.id }) {
+            folders[idx].isLocked = false
+            saveData()
+        }
+    }
+    
+    // MARK: - Notes & Folders Filtering
+
+    func getNotes(inFolder folderId: UUID? = nil, includeDeleted: Bool = false, includeArchived: Bool = false, respectFolderLock: Bool = true) -> [Note] {
+        return notes.filter { note in
+            let folderMatch = note.folderId == folderId
+            let deletedMatch = includeDeleted ? note.isDeleted : !note.isDeleted
+            let archivedMatch = includeArchived ? true : !note.isArchived
+            
+            // Check if note is in a locked folder and respect the lock
+            let folderLockMatch: Bool
+            if respectFolderLock, let noteFolderId = note.folderId {
+                if let folder = folders.first(where: { $0.id == noteFolderId }) {
+                    folderLockMatch = !folder.isLocked
+                } else {
+                    folderLockMatch = true // If folder not found, allow access
+                }
+            } else {
+                folderLockMatch = true // Don't restrict if not respecting folder lock
+            }
+            
+            return folderMatch && deletedMatch && archivedMatch && folderLockMatch
+        }
+    }
+
+    func getAllNotes(includeDeleted: Bool = false, includeArchived: Bool = false, respectFolderLock: Bool = true) -> [Note] {
+        return notes.filter { note in
+            let deletedMatch = includeDeleted ? true : !note.isDeleted
+            let archivedMatch = includeArchived ? true : !note.isArchived
+            
+            // Check if note is in a locked folder and respect the lock
+            let folderLockMatch: Bool
+            if respectFolderLock, let noteFolderId = note.folderId {
+                if let folder = folders.first(where: { $0.id == noteFolderId }) {
+                    folderLockMatch = !folder.isLocked
+                } else {
+                    folderLockMatch = true // If folder not found, allow access
+                }
+            } else {
+                folderLockMatch = true // Don't restrict if not respecting folder lock
+            }
+            
+            return deletedMatch && archivedMatch && folderLockMatch
+        }
+    }
+
+    // Add a method to get notes from locked folders (for internal use only)
+    func getNotesFromLockedFolder(_ folderId: UUID) -> [Note] {
+        return notes.filter { note in
+            note.folderId == folderId && !note.isDeleted && !note.isArchived
+        }
     }
     
     func getRecentlyDeletedNotes() -> [Note] {
         return notes.filter { $0.isDeleted }
+    }
+    
+    func getArchivedNotes() -> [Note] {
+        return notes.filter { $0.isArchived && !$0.isDeleted }
     }
     
     func getFolderName(for folderId: UUID?) -> String {
@@ -209,7 +283,7 @@ class NoteManager: ObservableObject {
         saveData()
     }
     
-    // MARK: - Image
+    // MARK: - Image Management
     private func imagesDirectory(for note: Note) -> URL {
         let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             .appendingPathComponent("NoteImages")

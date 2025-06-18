@@ -186,6 +186,7 @@ struct NoteEditorView: View {
                             } label: {
                                 Image(systemName: "ellipsis.circle")
                             }
+                            
                         }
                     }
                 }

@@ -82,6 +82,17 @@ struct SettingsView: View {
                         Label("Language", systemImage: "globe")
                     }
                 }
+                
+                Section() {
+                    NavigationLink(destination: ArchivedNotesView()) {
+                        HStack {
+                            Label("Archived Notes", systemImage: "archivebox")
+                            Spacer()
+                            Text("\(noteManager.getArchivedNotes().count)")
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                }
 
                 // About Section
                 Section(header: Text("About"), footer: Text("© 2025 York Development")) {

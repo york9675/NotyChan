@@ -31,6 +31,7 @@
 		981B8AC02DD227400045F520 /* GalleryOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B8ABF2DD227400045F520 /* GalleryOverviewView.swift */; };
 		981C79642DCCD12700A5D7F7 /* RichTextKit in Frameworks */ = {isa = PBXBuildFile; productRef = 981C79632DCCD12700A5D7F7 /* RichTextKit */; };
 		983BE2992DCF3E6500BEE2D3 /* LangView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BE2982DCF3E6500BEE2D3 /* LangView.swift */; };
+		9847FCE42E02C32E00965BBA /* ArchivedNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9847FCE32E02C32E00965BBA /* ArchivedNotesView.swift */; };
 		98D3BCEE2DCE39BA00801ED6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98D3BCDC2DCE39BA00801ED6 /* Preview Assets.xcassets */; };
 		98D3BCEF2DCE39BA00801ED6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98D3BCDF2DCE39BA00801ED6 /* Assets.xcassets */; };
 		98D3BCF02DCE39BA00801ED6 /* AcknowledgementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D3BCDE2DCE39BA00801ED6 /* AcknowledgementsView.swift */; };
@@ -103,12 +104,13 @@
 		981C79332DCCBD6600A5D7F7 /* NotyChan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotyChan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		983BE2972DCEECDE00BEE2D3 /* NotyChan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotyChan.entitlements; sourceTree = "<group>"; };
 		983BE2982DCF3E6500BEE2D3 /* LangView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LangView.swift; sourceTree = "<group>"; };
+		9847FCE32E02C32E00965BBA /* ArchivedNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedNotesView.swift; sourceTree = "<group>"; };
 		98D3BCDC2DCE39BA00801ED6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		98D3BCDE2DCE39BA00801ED6 /* AcknowledgementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsView.swift; sourceTree = "<group>"; };
 		98D3BCDF2DCE39BA00801ED6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98D3BCE02DCE39BA00801ED6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		98D3BCE12DCE39BA00801ED6 /* DeveloperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperView.swift; sourceTree = "<group>"; };
-		98D3BCE32DCE39BA00801ED6 /* FolderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListView.swift; sourceTree = "<group>"; };
+		98D3BCE32DCE39BA00801ED6 /* FolderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		98D3BCE42DCE39BA00801ED6 /* MoveToFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToFolderView.swift; sourceTree = "<group>"; };
 		98D3BCE62DCE39BA00801ED6 /* NoteEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorView.swift; sourceTree = "<group>"; };
 		98D3BCE72DCE39BA00801ED6 /* NoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListView.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				981B8ABF2DD227400045F520 /* GalleryOverviewView.swift */,
 				981B8ABB2DD217930045F520 /* ImageDetailView.swift */,
 				98D3BCEC2DCE39BA00801ED6 /* SettingsView.swift */,
+				9847FCE32E02C32E00965BBA /* ArchivedNotesView.swift */,
 				983BE2982DCF3E6500BEE2D3 /* LangView.swift */,
 				98D3BCDE2DCE39BA00801ED6 /* AcknowledgementsView.swift */,
 				98D3BCE12DCE39BA00801ED6 /* DeveloperView.swift */,
@@ -362,6 +365,7 @@
 				981B8AB12DD20DBB0045F520 /* NoteImage.swift in Sources */,
 				98D3BCF02DCE39BA00801ED6 /* AcknowledgementsView.swift in Sources */,
 				9808853F2DD06D5B00D7BD32 /* WatchSyncPush.swift in Sources */,
+				9847FCE42E02C32E00965BBA /* ArchivedNotesView.swift in Sources */,
 				980885482DD06E4A00D7BD32 /* Folder.swift in Sources */,
 				980885492DD06E4A00D7BD32 /* Note.swift in Sources */,
 				98D3BCF12DCE39BA00801ED6 /* ContentView.swift in Sources */,

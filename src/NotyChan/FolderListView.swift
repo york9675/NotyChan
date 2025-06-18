@@ -56,16 +56,16 @@ struct FolderListView: View {
     @State private var folderToRename: Folder?
     @State private var renameFolderName: String = ""
     @State private var folderToDelete: Folder?
+    @State private var folderToUnlock: Folder?
 
     @State private var isSelecting = false
     @State private var selectedFolderIds: Set<UUID> = []
     @State private var isDeleteConfirmationPresented = false
 
     @State private var searchText: String = ""
-
     @State private var sortOptions = FolderSortOptions.load()
-    
     @State private var showGallery = false
+    @State private var isAuthenticating = false
 
     var allNotesWithImages: [Note] {
         noteManager.getAllNotes().filter { !$0.images.isEmpty }
@@ -111,7 +111,7 @@ struct FolderListView: View {
                                 .foregroundColor(.accentColor)
                             Text("All Notes")
                             Spacer()
-                            Text("\(noteManager.getAllNotes().count)")
+                            Text("\(noteManager.getAllNotes(respectFolderLock: true).count)")
                                 .foregroundColor(.secondary)
                         }
                     }
@@ -160,43 +160,129 @@ struct FolderListView: View {
                             .padding()
                         } else {
                             ForEach(folders) { folder in
-                                NavigationLink(destination: NoteListView(folderFilter: folder.id)) {
-                                    HStack {
-                                        Image(systemName: "folder")
-                                            .foregroundColor(.accentColor)
-                                        Text(folder.name)
-                                        Spacer()
-                                        Text("\(noteManager.getNotes(inFolder: folder.id).count)")
-                                            .foregroundColor(.secondary)
-                                    }
-                                }
-                                .swipeActions(edge: .trailing) {
-                                    Button(role: .destructive) {
-                                        folderToDelete = folder
-                                    } label: {
-                                        Label("Delete", systemImage: "trash")
-                                    }
-                                    .tint(.red)
-                                    
+                                if folder.isLocked {
+                                    // Locked folder row
                                     Button {
-                                        folderToRename = folder
-                                        renameFolderName = folder.name
+                                        folderToUnlock = folder
+                                        Task {
+                                            isAuthenticating = true
+                                            let success = await BiometricAuth.authenticate(reason: String(localized: "Unlock folder '\(folder.name)'"))
+                                            isAuthenticating = false
+                                            if success {
+                                                noteManager.unlockFolder(folder)
+                                                folderToUnlock = nil
+                                            }
+                                        }
                                     } label: {
-                                        Label("Rename", systemImage: "pencil")
+                                        HStack {
+                                            Image(systemName: "folder")
+                                                .foregroundColor(.accentColor)
+                                            Text(folder.name)
+                                            Spacer()
+                                            Image(systemName: "lock.fill")
+                                                .foregroundColor(.gray)
+                                        }
                                     }
-                                    .tint(.blue)
-                                }
-                                .contextMenu {
-                                    Button {
-                                        folderToRename = folder
-                                        renameFolderName = folder.name
-                                    } label: {
-                                        Label("Rename", systemImage: "pencil")
+                                    .disabled(isAuthenticating)
+                                    .swipeActions(edge: .trailing) {
+                                        Button(role: .destructive) {
+                                            folderToDelete = folder
+                                        } label: {
+                                            Label("Delete", systemImage: "trash")
+                                        }
+                                        .tint(.red)
+                                        
+                                        Button {
+                                            Task {
+                                                let success = await BiometricAuth.authenticate(reason: String(localized: "Unlock folder '\(folder.name)'"))
+                                                if success {
+                                                    noteManager.unlockFolder(folder)
+                                                }
+                                            }
+                                        } label: {
+                                            Label("Unlock", systemImage: "lock.open")
+                                        }
+                                        .tint(.green)
                                     }
-                                    Button(role: .destructive) {
-                                        folderToDelete = folder
-                                    } label: {
-                                        Label("Delete", systemImage: "trash")
+                                    .contextMenu {
+                                        Button {
+                                            Task {
+                                                let success = await BiometricAuth.authenticate(reason: String(localized: "Unlock folder '\(folder.name)'"))
+                                                if success {
+                                                    noteManager.unlockFolder(folder)
+                                                }
+                                            }
+                                        } label: {
+                                            Label("Unlock Folder", systemImage: "lock.open")
+                                        }
+                                        Button(role: .destructive) {
+                                            folderToDelete = folder
+                                        } label: {
+                                            Label("Delete", systemImage: "trash")
+                                        }
+                                    }
+                                } else {
+                                    // Unlocked folder row
+                                    NavigationLink(destination: NoteListView(folderFilter: folder.id)) {
+                                        HStack {
+                                            Image(systemName: "folder")
+                                                .foregroundColor(.accentColor)
+                                            Text(folder.name)
+                                            Spacer()
+                                            Text("\(noteManager.getNotes(inFolder: folder.id).count)")
+                                                .foregroundColor(.secondary)
+                                        }
+                                    }
+                                    .swipeActions(edge: .trailing) {
+                                        Button(role: .destructive) {
+                                            folderToDelete = folder
+                                        } label: {
+                                            Label("Delete", systemImage: "trash")
+                                        }
+                                        .tint(.red)
+                                        
+                                        Button {
+                                            folderToRename = folder
+                                            renameFolderName = folder.name
+                                        } label: {
+                                            Label("Rename", systemImage: "pencil")
+                                        }
+                                        .tint(.blue)
+                                        
+                                        Button {
+                                            Task {
+                                                let success = await BiometricAuth.authenticate(reason: String(localized: "Lock folder '\(folder.name)'"))
+                                                if success {
+                                                    noteManager.lockFolder(folder)
+                                                }
+                                            }
+                                        } label: {
+                                            Label("Lock", systemImage: "lock")
+                                        }
+                                        .tint(.orange)
+                                    }
+                                    .contextMenu {
+                                        Button {
+                                            folderToRename = folder
+                                            renameFolderName = folder.name
+                                        } label: {
+                                            Label("Rename", systemImage: "pencil")
+                                        }
+                                        Button {
+                                            Task {
+                                                let success = await BiometricAuth.authenticate(reason: String(localized: "Lock folder '\(folder.name)'"))
+                                                if success {
+                                                    noteManager.lockFolder(folder)
+                                                }
+                                            }
+                                        } label: {
+                                            Label("Lock Folder", systemImage: "lock")
+                                        }
+                                        Button(role: .destructive) {
+                                            folderToDelete = folder
+                                        } label: {
+                                            Label("Delete", systemImage: "trash")
+                                        }
                                     }
                                 }
                             }
