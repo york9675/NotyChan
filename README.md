@@ -1,12 +1,10 @@
 # NotyChan
 
-Shh! Let's not leak our hard work!
-
-This repo is for internal development use only.
-
 ## To-Do
 
-- [ ] Fix ArchivedNotesView.swift
+- [ ] Fix note archive
+
+- [ ] Fix note editing
 
 - [ ] Make it ready for public release
 
