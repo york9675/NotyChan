@@ -30,6 +30,9 @@
 - 💡 100% free, open-source, and ad-free
 - 📶 Works entirely offline — no account, no tracking
 
+> [!WARNING]\
+> This project is still under development.
+
 > [!NOTE]  
 > This application is not on the App Store because the developer cannot afford the Apple Developer Program membership fee. You need to install it on your device using Xcode. You are also welcome to sponsor developers through the Buy Me a Coffee button below, thank you!
 
@@ -78,10 +81,11 @@ Unlike many modern note apps, NotyChan is:
 
 ## 📦 Planned Features
 
-- Make note archive better
-- Make note rich text editor better
-- iCloud sync (requires paid Apple Developer account)
-- App Store release (requires paid Apple Developer account)
+- [ ] Make note archive better
+- [ ] Make note rich text editor better
+- [ ] iCloud sync (requires paid Apple Developer account)
+- [ ] App Store release (requires paid Apple Developer account)
+- [ ] More features to come...
 
 ---
 
