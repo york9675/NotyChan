@@ -38,6 +38,12 @@
 
 ---
 
+## 📷 Screenshots
+
+(Coming soon)
+
+---
+
 ## 🚀 Features
 
 ### ✍️ Rich Text Editor
@@ -144,7 +150,7 @@ Or, you can simply give the project a :star:!
 
 _Thank you for taking the time to read and for any support you can offer. Together, we can improve this app and help more people!_
 
-## Star History
+## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=york9675/NotyChan&type=Date)](https://star-history.com/#york9675/NotyChan&Date)
 

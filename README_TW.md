@@ -38,6 +38,12 @@
 
 ---
 
+## 📷 螢幕截圖
+
+(待補)
+
+---
+
 ## 🚀 功能特色
 
 ### ✍️ 富文字編輯器
@@ -144,7 +150,7 @@ cd NotyChan/src
 
 _感謝你抽出時間閱讀，並感謝你提供的任何支持。讓我們一起改善這款應用程式，幫助更多的人！_
 
-## 星星歷史
+## ⭐ 星星歷史
 
 [![Star History Chart](https://api.star-history.com/svg?repos=york9675/NotyChan\&type=Date)](https://star-history.com/#york9675/NotyChan&Date)
 
