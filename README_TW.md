@@ -43,8 +43,6 @@
 
 (待補)
 
----
-
 ## 🚀 功能特色
 
 ### ✍️ 富文字編輯器
@@ -74,8 +72,6 @@
 - 筆記封存  
 - Apple Watch 應用程式（僅能檢視已同步的筆記）  
 
----
-
 ## 🎯 為什麼選擇 NotyChan？
 
 不同於許多現代筆記應用程式，NotyChan 擁有：
@@ -84,17 +80,15 @@
 - **開源** – 完全透明，您可以閱讀、分支或貢獻程式碼。  
 - **離線優先** – 無雲端綁定，筆記僅存在於您的裝置中。  
 
----
-
 ## 📦 計劃中的功能
 
-- [ ] 改善筆記封存功能  
+- [ ] 改善筆記封存功能
+- [ ] 支援 iOS 26 (還有 iOS 16?)
 - [ ] 改善富文字編輯器  
 - [ ] iCloud 同步（需付費 Apple 開發者帳號）  
 - [ ] App Store 上架（需付費 Apple 開發者帳號）  
 - [ ] 更多功能待開發...
 
----
 
 ## 🛠️ 建置與執行
 
@@ -113,8 +107,6 @@ cd NotyChan/src
 
 有關更多細節，請查看 [建置說明](docs/Build_TW.md)。
 
----
-
 ## 🤝 貢獻
 
 歡迎 Pull Request、回饋與問題回報！
@@ -123,11 +115,15 @@ cd NotyChan/src
 * 遵循標準的 [fork → commit → PR](https://guides.github.com/activities/forking/) 工作流程
 * 若是重大更動，請先開啟討論
 
----
-
 ## 📄 許可證
 
 該項目已獲得 MIT 許可證的許可。有關更多詳細資訊，請參閱[許可證文件](LICENSE)。
+
+## 🙏 感謝
+
+此專案使用了多個開源程式庫，使開發更加輕鬆高效。特別感謝這些庫的作者：
+
+- [RichTextKit](https://github.com/danielsaidi/RichTextKit) by [danielsaidi](https://github.com/danielsaidi)
 
 ## 💪 支持
 

@@ -43,8 +43,6 @@
 
 (Coming soon)
 
----
-
 ## 🚀 Features
 
 ### ✍️ Rich Text Editor
@@ -74,8 +72,6 @@
 - Note archive
 - Apple Watch app (view-only for synced notes)
 
----
-
 ## 🎯 Why NotyChan?
 
 Unlike many modern note apps, NotyChan is:
@@ -84,17 +80,14 @@ Unlike many modern note apps, NotyChan is:
 - **Open-source** – Built in the open. You can read, fork, or contribute to the code.
 - **Offline-first** – No cloud lock-in. Your notes live on your device.
 
----
-
 ## 📦 Planned Features
 
 - [ ] Make note archive better
-- [ ] Make note rich text editor better
+- [ ] Support iOS 26 and maybe iOS 16
+- [ ] Make note text editor better
 - [ ] iCloud sync (requires paid Apple Developer account)
 - [ ] App Store release (requires paid Apple Developer account)
 - [ ] More features to come...
-
----
 
 ## 🛠️ Build & Run
 
@@ -113,8 +106,6 @@ cd NotyChan/src
 
 For more details, check the [build instructions](docs/Build.md).
 
----
-
 ## 🤝 Contributing
 
 Pull requests, feedback, and issue reports are welcome!
@@ -123,11 +114,15 @@ Pull requests, feedback, and issue reports are welcome!
 * Follow the standard [fork → commit → PR](https://guides.github.com/activities/forking/) workflow
 * For major changes, please open a discussion first
 
----
-
 ## 📄 License
 
 This project is licensed under the MIT License. See the [LICENSE file](LICENSE) for more details.
+
+## 🙏 Acknowledgements
+
+This project uses several open-source libraries that make development easier and more efficient. Special thanks to the authors of these libraries:
+
+- [RichTextKit](https://github.com/danielsaidi/RichTextKit) by [danielsaidi](https://github.com/danielsaidi)
 
 ## 💪 Support
 
