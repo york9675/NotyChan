@@ -1,7 +1,7 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&text=NotyChan&animation=blink)
 
 <p align="center">
-  <a href="#License" target="_blank">
+  <a href="📄 License" target="_blank">
     <img alt="License" src="https://img.shields.io/github/license/york9675/NotyChan?logo=github&style=for-the-badge" />
   </a>
     <a href="https://developer.apple.com/swift/" target="_blank">
@@ -20,13 +20,14 @@
 
 ---
 
-**NotyChan** is a beautiful, lightweight, and privacy-respecting note-taking app for iOS and watchOS.
+**NotyChan** is a beautiful, lightweight, and privacy-respecting note-taking app for iOS, iPadOS and macOS.
 
 - 🌈 Fully customizable rich text editor
 - 🖼️ Per-note image gallery with descriptions
 - 🔐 Secure your notes and folders with Face ID / Touch ID
 - 📂 Folder-based organization
 - ⌚ Apple Watch support (read-only for now)
+- 🎨 Beautiful and intuitive design with cross Apple platform support using SwiftUI
 - 💡 100% free, open-source, and ad-free
 - 📶 Works entirely offline — no account, no tracking
 
@@ -109,6 +110,8 @@ cd NotyChan/src
 2. Open the `NotyChan.xcodeproj` file in Xcode.
 
 3. Build and run on your simulator or physical device.
+
+For more details, check the [build instructions](docs/Build.md).
 
 ---
 

@@ -1,7 +1,7 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&text=NotyChan&animation=blink)
 
 <p align="center">
-  <a href="#License" target="_blank">
+  <a href="#📄 許可證" target="_blank">
     <img alt="License" src="https://img.shields.io/github/license/york9675/NotyChan?logo=github&style=for-the-badge" />
   </a>
     <a href="https://developer.apple.com/swift/" target="_blank">
@@ -20,13 +20,14 @@
 
 ---
 
-**NotyChan** 是一款美觀、輕量且注重隱私的 iOS 筆記應用程式。
+**NotyChan** 是一款美觀、輕量且注重隱私的 iOS / iPadOS / macOS 筆記應用程式。
 
 - 🌈 完全自訂的豐富文字編輯器  
 - 🖼️ 每則筆記皆有專屬圖片庫與描述  
 - 🔐 使用 Face ID / Touch ID 保護筆記與資料夾  
 - 📂 以資料夾方式管理  
 - ⌚ 支援 Apple Watch（目前僅可讀取）  
+- 🎨 使用 SwiftUI 製成的美觀且直觀的設計與跨 Apple 平台支援
 - 💡 完全免費、開源、無廣告  
 - 📶 完全離線運作 — 無需帳號、無追蹤  
 
@@ -110,6 +111,8 @@ cd NotyChan/src
 
 3. 在模擬器或實體裝置上建置並執行。
 
+有關更多細節，請查看 [建置說明](docs/Build_TW.md)。
+
 ---
 
 ## 🤝 貢獻
@@ -158,6 +161,6 @@ _感謝你抽出時間閱讀，並感謝你提供的任何支持。讓我們一�
 
 © 2025 York Development
 
-在台灣以 \:heart: 與 Swift 打造。
+在台灣以 :heart: 與 Swift 打造。
 
 (目前此繁中版README使用機器翻譯，之後有空再潤潤吧，哈哈。)
