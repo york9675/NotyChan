@@ -1,5 +1,15 @@
 # 建置說明 - NotyChan
 
+<p align="center"> 
+  <a href="Build.md">English</a> 
+  ·
+  <b>繁體中文</b>
+</p>
+
+<p align="center">
+  <a href="../README_TW.md">← 首頁</a> 
+</P>
+
 本指南將幫助您將此專案匯入 Xcode 並將此程式在 iPhone 或 iOS 模擬器上執行。
 
 ## 目錄

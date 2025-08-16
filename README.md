@@ -1,7 +1,7 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&text=NotyChan&animation=blink)
 
 <p align="center">
-  <a href="📄 License" target="_blank">
+  <a href="LICENSE" target="_blank">
     <img alt="License" src="https://img.shields.io/github/license/york9675/NotyChan?logo=github&style=for-the-badge" />
   </a>
     <a href="https://developer.apple.com/swift/" target="_blank">
@@ -127,7 +127,7 @@ Pull requests, feedback, and issue reports are welcome!
 
 ## 📄 License
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
+This project is licensed under the MIT License. See the [LICENSE file](LICENSE) for more details.
 
 ## 💪 Support
 

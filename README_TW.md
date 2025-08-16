@@ -1,7 +1,7 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&text=NotyChan&animation=blink)
 
 <p align="center">
-  <a href="#📄 許可證" target="_blank">
+  <a href="LICENSE" target="_blank">
     <img alt="License" src="https://img.shields.io/github/license/york9675/NotyChan?logo=github&style=for-the-badge" />
   </a>
     <a href="https://developer.apple.com/swift/" target="_blank">
@@ -127,7 +127,7 @@ cd NotyChan/src
 
 ## 📄 許可證
 
-該項目已獲得 MIT 許可證的許可。有關更多詳細資訊，請參閱許可證文件。
+該項目已獲得 MIT 許可證的許可。有關更多詳細資訊，請參閱[許可證文件](LICENSE)。
 
 ## 💪 支持
 

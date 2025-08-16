@@ -1,5 +1,15 @@
 # Build Instructions for NotyChan
 
+<p align="center"> 
+  <b>English</B> 
+  ·
+  <a href="Build_TW.md">繁體中文</a> 
+</p>
+
+<p align="center">
+  <a href="../README.md">← Home</a> 
+</P>
+
 This guide will help you import this project into Xcode and run it on your iPhone or iOS simulator.
 
 ## Table of Contents
