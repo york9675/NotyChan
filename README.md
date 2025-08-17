@@ -20,6 +20,8 @@
 
 ---
 
+![macOS](./docs/Screenshots/macOS_Editor.png)
+
 **NotyChan** is a beautiful, lightweight, and privacy-respecting note-taking app for iOS, iPadOS and macOS.
 
 - 🌈 Fully customizable rich text editor
@@ -41,7 +43,7 @@
 
 ## 📷 Screenshots
 
-(Coming soon)
+For a complete visual tour, check out the [Screenshots](docs/Screenshots.md) page.
 
 ## 🚀 Features
 

@@ -20,6 +20,8 @@
 
 ---
 
+![macOS](./docs/Screenshots/macOS_Editor.png)
+
 **NotyChan** 是一款美觀、輕量且注重隱私的 iOS / iPadOS / macOS 筆記應用程式。
 
 - 🌈 完全自訂的豐富文字編輯器  
@@ -41,7 +43,9 @@
 
 ## 📷 螢幕截圖
 
-(待補)
+請參閱 [螢幕截圖](docs/Screenshots.md) 頁面查看完整的視覺導覽。
+
+(目前僅有英文版截圖，不過此程式是支援繁體中文的。)
 
 ## 🚀 功能特色
 
