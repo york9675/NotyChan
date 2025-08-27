@@ -174,16 +174,6 @@
         }
       }
     },
-    "All Notes (%lld)" : {
-      "localizations" : {
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "所有備忘錄 (%lld)"
-          }
-        }
-      }
-    },
     "All notes and images inside it in the trash will be permanently deleted. This action cannot be undone." : {
       "localizations" : {
         "zh-Hant" : {
@@ -981,6 +971,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已刪除的備忘錄將會在此處保存30天"
+          }
+        }
+      }
+    },
+    "NotyChan" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NotyChan"
+          }
+        }
+      }
+    },
+    "NotyChan is a beautiful, lightweight, and privacy-respecting note-taking app for iOS, iPadOS and macOS." : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NotyChan 是一款美觀、輕量且注重隱私的 iOS / iPadOS / macOS 筆記應用程式。"
           }
         }
       }

@@ -77,12 +77,14 @@ struct NoteRow: View {
 
 private extension Note {
     var firstLine: String {
-        guard let attributed = try? NSAttributedString(data: rtfData, options: [.documentType: NSAttributedString.DocumentType.rtf], documentAttributes: nil)
-        else { return "" }
-        let all = attributed.string
-        let lines = all.components(separatedBy: .newlines)
-        return lines.first(where: { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && $0 != title })
-        ?? String(localized: "No additional text")
+        if let attributed = try? NSAttributedString(data: rtfData, options: [.documentType: NSAttributedString.DocumentType.rtf], documentAttributes: nil) {
+            let all = attributed.string
+            let lines = all.components(separatedBy: .newlines)
+            if let firstRealLine = lines.first(where: { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && $0 != title }) {
+                return firstRealLine
+            }
+        }
+        return String(localized: "No additional text")
     }
     var lastEditedFormatted: String {
         let formatter = DateFormatter()

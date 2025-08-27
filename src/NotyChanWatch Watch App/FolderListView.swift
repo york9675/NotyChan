@@ -10,7 +10,13 @@ struct FolderListView: View {
                     NavigationLink {
                         NoteListView(folder: nil)
                     } label: {
-                        Label("All Notes (\(wcManager.allNotes.count))", systemImage: "note.text")
+                        HStack {
+                            Label("All Notes", systemImage: "note.text")
+                            Spacer()
+                            Text("\(wcManager.allNotes.count)")
+                                .foregroundColor(.secondary)
+                                .font(.footnote)
+                        }
                     }
                 }
 
@@ -20,9 +26,7 @@ struct FolderListView: View {
                             NoteListView(folder: folder)
                         } label: {
                             HStack {
-                                Image(systemName: "folder")
-                                    .foregroundColor(.accentColor)
-                                Text(folder.name)
+                                Label(folder.name, systemImage: "folder")
                                 Spacer()
                                 Text("\(wcManager.notes(in: folder.id).count)")
                                     .foregroundColor(.secondary)
@@ -37,6 +41,16 @@ struct FolderListView: View {
                         Label(wcManager.isSyncing ? "Syncing…" : "Sync Now", systemImage: "arrow.triangle.2.circlepath")
                     }
                     .disabled(wcManager.isSyncing)
+                }
+                
+                Section {
+                    NavigationLink {
+                        AboutView()
+                    } label: {
+                        HStack {
+                            Label("About", systemImage: "info.circle")
+                        }
+                    }
                 }
             }
             .navigationTitle("Folders")
