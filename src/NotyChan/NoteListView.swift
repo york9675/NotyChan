@@ -64,8 +64,12 @@ struct NoteListView: View {
     @State private var isSingleDeleteConfirmationPresented = false
     @State private var isArchiveConfirmationPresented = false
 
+    // Sharing state
     @State private var noteToShare: Note? = nil
     @State private var isShareSheetPresented: Bool = false
+    @State private var isShareTypeDialogPresented: Bool = false
+    @State private var shareItems: [Any] = []
+    @State private var tempPDFURL: URL? = nil
 
     @State private var isRenamingFolder = false
     @State private var renameFolderName = ""
@@ -312,8 +316,17 @@ struct NoteListView: View {
             )
             .environmentObject(noteManager)
         }
-        .sheet(item: $noteToShare) { note in
-            ActivityView(activityItems: [titleAndTextToShare(note: note)])
+        // Replace the old sheet(item: $noteToShare) with this generic share sheet
+        .sheet(isPresented: $isShareSheetPresented, onDismiss: {
+            // Cleanup temp PDF file if created
+            if let url = tempPDFURL {
+                try? FileManager.default.removeItem(at: url)
+            }
+            tempPDFURL = nil
+            shareItems = []
+            noteToShare = nil
+        }) {
+            ActivityView(activityItems: shareItems)
         }
         .sheet(isPresented: $showGallery) {
             NavigationView {
@@ -358,6 +371,24 @@ struct NoteListView: View {
                 }
                 isRenamingFolder = false
             }
+        }
+        // Dialog to choose share type when sharing from list
+        .confirmationDialog("Share Note", isPresented: $isShareTypeDialogPresented, presenting: noteToShare) { note in
+            Button("Share as Plain Text") {
+                shareItems = [titleAndTextToShare(note: note)]
+                isShareSheetPresented = true
+            }
+            Button("Export as PDF") {
+                #if os(iOS)
+                if let url = exportNoteAsPDF(note: note) {
+                    tempPDFURL = url
+                    shareItems = [url]
+                    isShareSheetPresented = true
+                }
+                #endif
+            }
+        } message: { _ in
+            Text("Choose how you want to share this note.")
         }
         .onChange(of: sortOptions) {
             sortOptions.save()
@@ -446,7 +477,9 @@ struct NoteListView: View {
             .tint(.orange)
             if (!note.isLocked) {
                 Button {
+                    // Ask for share type on tap
                     noteToShare = note
+                    isShareTypeDialogPresented = true
                 } label: {
                     Label("Share", systemImage: "square.and.arrow.up")
                 }
@@ -470,7 +503,9 @@ struct NoteListView: View {
                 Label("Archive Note", systemImage: "archivebox")
             }
             Button {
+                // Ask for share type from context menu, too
                 noteToShare = note
+                isShareTypeDialogPresented = true
             } label: {
                 Label("Share Note", systemImage: "square.and.arrow.up")
             }
@@ -595,6 +630,57 @@ struct NoteListView: View {
             }
         }
         return text
+    }
+
+    // Export a single note as a paginated PDF preserving formatting.
+    private func exportNoteAsPDF(note: Note) -> URL? {
+        guard let attributed = try? NSAttributedString(
+            data: note.rtfData,
+            options: [.documentType: NSAttributedString.DocumentType.rtf],
+            documentAttributes: nil
+        ) else {
+            return nil
+        }
+
+        let range = NSRange(location: 0, length: attributed.length)
+        guard let htmlData = try? attributed.data(
+            from: range,
+            documentAttributes: [.documentType: NSAttributedString.DocumentType.html]
+        ),
+        let html = String(data: htmlData, encoding: .utf8) else {
+            return nil
+        }
+
+        let printFormatter = UIMarkupTextPrintFormatter(markupText: html)
+        let pageRenderer = UIPrintPageRenderer()
+        pageRenderer.addPrintFormatter(printFormatter, startingAtPageAt: 0)
+
+        // Paper size (US Letter). For A4, use 595.2 x 841.8
+        let paperRect = CGRect(x: 0, y: 0, width: 612, height: 792)
+        let printableRect = paperRect.insetBy(dx: 20, dy: 20)
+
+        pageRenderer.setValue(paperRect, forKey: "paperRect")
+        pageRenderer.setValue(printableRect, forKey: "printableRect")
+
+        let data = NSMutableData()
+        UIGraphicsBeginPDFContextToData(data, paperRect, nil)
+        for pageIndex in 0..<pageRenderer.numberOfPages {
+            UIGraphicsBeginPDFPage()
+            let bounds = UIGraphicsGetPDFContextBounds()
+            pageRenderer.drawPage(at: pageIndex, in: bounds)
+        }
+        UIGraphicsEndPDFContext()
+
+        let safeTitle = note.title.isEmpty ? "Note" : note.title
+        let fileName = safeTitle.replacingOccurrences(of: "/", with: "-") + ".pdf"
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
+
+        do {
+            try data.write(to: url, options: .atomic)
+            return url
+        } catch {
+            return nil
+        }
     }
 }
 

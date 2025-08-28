@@ -96,6 +96,29 @@ struct FolderListView: View {
         }
     }
 
+    // Generates a unique folder name by appending " (n)" if needed.
+    private func uniqueFolderName(for desiredName: String) -> String {
+        let trimmedDesired = desiredName.trimmingCharacters(in: .whitespacesAndNewlines)
+        let existingNamesLowercased: Set<String> = Set(
+            noteManager.folders.map { $0.name.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() }
+        )
+
+        // If no exact (case-insensitive) match, return as-is
+        if !existingNamesLowercased.contains(trimmedDesired.lowercased()) {
+            return trimmedDesired
+        }
+
+        // Otherwise, find the next available " (n)" suffix
+        var n = 2
+        while true {
+            let candidate = "\(trimmedDesired) (\(n))"
+            if !existingNamesLowercased.contains(candidate.lowercased()) {
+                return candidate
+            }
+            n += 1
+        }
+    }
+
     var body: some View {
         let folders = filteredFolders
         let selectionCount = selectedFolderIds.count
@@ -383,8 +406,10 @@ struct FolderListView: View {
                     TextField("Folder Name", text: $newFolderName)
                     Button("Cancel", role: .cancel) { }
                     Button("Create") {
-                        if !newFolderName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                            noteManager.addFolder(name: newFolderName)
+                        let trimmed = newFolderName.trimmingCharacters(in: .whitespacesAndNewlines)
+                        if !trimmed.isEmpty {
+                            let finalName = uniqueFolderName(for: trimmed)
+                            noteManager.addFolder(name: finalName)
                         }
                     }
                 }

@@ -23,6 +23,10 @@ struct NoteEditorView: View {
     
     @State private var showGallery = false
 
+    // PDF export/share
+    @State private var pdfURL: URL?
+    @State private var isPDFSharePresented = false
+
     let note: Note
     let onUpdate: (Note) -> Void
 
@@ -139,11 +143,24 @@ struct NoteEditorView: View {
                             } label: {
                                 Label("Gallery", systemImage: "photo.on.rectangle.angled")
                             }
-                            
-                            Button {
-                                isShareSheetPresented = true
+
+                            Menu {
+                                Button {
+                                    isShareSheetPresented = true
+                                } label: {
+                                    Label("Share as Plain Text", systemImage: "text.word.spacing")
+                                }
+
+                                Button {
+                                    if let url = exportNoteAsPDF() {
+                                        pdfURL = url
+                                        isPDFSharePresented = true
+                                    }
+                                } label: {
+                                    Label("Export as PDF", systemImage: "doc.text")
+                                }
                             } label: {
-                                Label("Share Note", systemImage: "square.and.arrow.up")
+                                Image(systemName: "square.and.arrow.up")
                             }
                             
                             Menu {
@@ -205,6 +222,17 @@ struct NoteEditorView: View {
                 .sheet(isPresented: $showGallery) {
                     GalleryView(note: workingNote)
                         .environmentObject(noteManager)
+                }
+                .sheet(isPresented: $isPDFSharePresented, onDismiss: {
+                    // Optionally clean up temp file after sharing
+                    if let url = pdfURL {
+                        try? FileManager.default.removeItem(at: url)
+                    }
+                    pdfURL = nil
+                }) {
+                    if let url = pdfURL {
+                        ActivityView(activityItems: [url])
+                    }
                 }
                 .alert("Delete Note", isPresented: $isDeleteConfirmationPresented) {
                     Button("Cancel", role: .cancel) { }
@@ -321,6 +349,52 @@ struct NoteEditorView: View {
             text += "\n\n" + plainText
         }
         return text
+    }
+
+    // Export the current note as a paginated PDF preserving formatting.
+    // This converts the NSAttributedString to HTML and renders it with a print formatter.
+    private func exportNoteAsPDF() -> URL? {
+        let attributed = richText
+        let range = NSRange(location: 0, length: attributed.length)
+
+        guard let htmlData = try? attributed.data(
+            from: range,
+            documentAttributes: [.documentType: NSAttributedString.DocumentType.html]
+        ),
+        let html = String(data: htmlData, encoding: .utf8) else {
+            return nil
+        }
+
+        let printFormatter = UIMarkupTextPrintFormatter(markupText: html)
+        let pageRenderer = UIPrintPageRenderer()
+        pageRenderer.addPrintFormatter(printFormatter, startingAtPageAt: 0)
+
+        // Choose paper size (US Letter). Use A4 by changing to 595.2 x 841.8 if preferred.
+        let paperRect = CGRect(x: 0, y: 0, width: 612, height: 792)
+        let printableRect = paperRect.insetBy(dx: 20, dy: 20)
+
+        // Set using KVC (as per UIPrintPageRenderer docs)
+        pageRenderer.setValue(paperRect, forKey: "paperRect")
+        pageRenderer.setValue(printableRect, forKey: "printableRect")
+
+        let pdfRenderer = UIGraphicsPDFRenderer(bounds: paperRect)
+        let data = pdfRenderer.pdfData { ctx in
+            for pageIndex in 0..<pageRenderer.numberOfPages {
+                ctx.beginPage()
+                pageRenderer.drawPage(at: pageIndex, in: ctx.pdfContextBounds)
+            }
+        }
+
+        let safeTitle = title.isEmpty ? "Note" : title
+        let fileName = safeTitle.replacingOccurrences(of: "/", with: "-") + ".pdf"
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
+
+        do {
+            try data.write(to: url, options: .atomic)
+            return url
+        } catch {
+            return nil
+        }
     }
 
     private func richTextEqual(_ text: NSAttributedString, _ data: Data) -> Bool {
