@@ -57,6 +57,7 @@ struct ArchivedNotesView: View {
     @State private var isUnarchiveConfirmationPresented = false
     @State private var noteToUnarchive: Note?
     @State private var noteToDelete: Note?
+    @State private var actionNote: Note?
 
     private var filteredNotes: [Note] {
         let archivedNotes = noteManager.getArchivedNotes()
@@ -127,13 +128,7 @@ struct ArchivedNotesView: View {
                     .padding()
                 } else {
                     ForEach(notes) { note in
-                        Button {
-                            // Show action sheet for unarchive/delete options
-                            showNoteActions(for: note)
-                        } label: {
-                            noteRow(note: note)
-                        }
-                        .buttonStyle(PlainButtonStyle())
+                        noteRow(note: note)
                     }
                 }
             }
@@ -314,31 +309,32 @@ struct ArchivedNotesView: View {
         } message: {
             Text("Are you sure you want to delete this note? You can restore it from Recently Deleted.")
         }
+        .confirmationDialog(
+            "Choose an action",
+            isPresented: Binding(
+                get: { actionNote != nil },
+                set: { if !$0 { actionNote = nil } }
+            ),
+            titleVisibility: .visible
+        ) {
+            Button("Unarchive") {
+                if let n = actionNote { noteToUnarchive = n }
+                actionNote = nil
+            }
+            Button("Delete", role: .destructive) {
+                if let n = actionNote { noteToDelete = n }
+                actionNote = nil
+            }
+            Button("Cancel", role: .cancel) {
+                actionNote = nil
+            }
+        } message: {
+            if let n = actionNote {
+                Text(displayTitle(for: n))
+            }
+        }
         .onChange(of: sortOptions) {
             sortOptions.save()
-        }
-    }
-
-    private func showNoteActions(for note: Note) {
-        let alert = UIAlertController(
-            title: displayTitle(for: note),
-            message: "Choose an action for this archived note",
-            preferredStyle: .actionSheet
-        )
-        
-        alert.addAction(UIAlertAction(title: "Unarchive", style: .default) { _ in
-            noteToUnarchive = note
-        })
-        
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
-            noteToDelete = note
-        })
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let window = windowScene.windows.first {
-            window.rootViewController?.present(alert, animated: true)
         }
     }
 
@@ -359,10 +355,6 @@ struct ArchivedNotesView: View {
                         .foregroundColor(.gray)
                         .padding(.leading, 2)
                 }
-                Spacer()
-                Image(systemName: "archivebox.fill")
-                    .foregroundColor(.orange)
-                    .font(.caption)
             }
             
             if note.isLocked {
@@ -398,6 +390,10 @@ struct ArchivedNotesView: View {
             }
         }
         .padding(.vertical, 2)
+        .onTapGesture {
+            // Use SwiftUI confirmationDialog instead of UIKit alert controller
+            actionNote = note
+        }
         .swipeActions(edge: .trailing) {
             Button(role: .destructive) {
                 noteToDelete = note

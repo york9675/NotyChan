@@ -404,6 +404,16 @@
         }
       }
     },
+    "Choose an action" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇一項動作"
+          }
+        }
+      }
+    },
     "Choose how you want to share this note." : {
       "localizations" : {
         "zh-Hant" : {
