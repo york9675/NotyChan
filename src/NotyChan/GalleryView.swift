@@ -47,11 +47,15 @@ struct GalleryView: View {
                             } label: {
                                 Label("Take Photo", systemImage: "camera")
                             }
+                            .tint(.primary)
+                            
                             Button {
                                 showPhotosPicker = true
                             } label: {
                                 Label("Add from Library", systemImage: "photo.badge.plus")
                             }
+                            .tint(.primary)
+                            
                         } label: {
                             Label("Add", systemImage: "plus")
                                 .font(.headline)
@@ -125,6 +129,7 @@ struct GalleryView: View {
                                         } label: {
                                             Label("Delete", systemImage: "trash")
                                         }
+                                        .tint(.red)
                                     }
                                 } preview: {
                                     if let uiImage = noteManager.loadImage(for: note, image: image) {
@@ -218,11 +223,15 @@ struct GalleryView: View {
                                 } label: {
                                     Label("Take Photo", systemImage: "camera")
                                 }
+                                .tint(.primary)
+                                
                                 Button {
                                     showPhotosPicker = true
                                 } label: {
                                     Label("Add from Library", systemImage: "photo.badge.plus")
                                 }
+                                .tint(.primary)
+                                
                             } label: {
                                 Image(systemName: "plus")
                             }

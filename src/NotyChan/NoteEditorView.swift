@@ -150,6 +150,7 @@ struct NoteEditorView: View {
                                 } label: {
                                     Label("Share as Plain Text", systemImage: "text.word.spacing")
                                 }
+                                .tint(.primary)
 
                                 Button {
                                     if let url = exportNoteAsPDF() {
@@ -159,6 +160,7 @@ struct NoteEditorView: View {
                                 } label: {
                                     Label("Export as PDF", systemImage: "doc.text")
                                 }
+                                .tint(.primary)
                             } label: {
                                 Image(systemName: "square.and.arrow.up")
                             }
@@ -169,6 +171,7 @@ struct NoteEditorView: View {
                                 } label: {
                                     Label("Move", systemImage: "folder")
                                 }
+                                .tint(.primary)
                                 
                                 Button {
                                     togglePin()
@@ -176,6 +179,7 @@ struct NoteEditorView: View {
                                     Label(workingNote.isPinned ? "Unpin Note" : "Pin Note",
                                           systemImage: workingNote.isPinned ? "pin.slash" : "pin")
                                 }
+                                .tint(.primary)
                                 
                                 Divider()
                                 
@@ -191,6 +195,7 @@ struct NoteEditorView: View {
                                 } label: {
                                     Label("Lock Note", systemImage: "lock")
                                 }
+                                .tint(.primary)
                                 
                                 Divider()
                                 
@@ -200,6 +205,7 @@ struct NoteEditorView: View {
                                     Label("Delete Note", systemImage: "trash")
                                         .foregroundColor(.red)
                                 }
+                                .tint(.red)
                             } label: {
                                 Image(systemName: "ellipsis.circle")
                             }

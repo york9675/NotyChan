@@ -112,11 +112,15 @@ struct ImageDetailView: View {
                         } label: {
                             Label("Edit Description", systemImage: "pencil")
                         }
+                        .tint(.primary)
+                        
                         Button(role: .destructive) {
                             deleteConfirmation = true
                         } label: {
                             Label("Delete Image", systemImage: "trash")
                         }
+                        .tint(.red)
+                        
                     } label: {
                         Image(systemName: "ellipsis")
                             .font(.system(size: 22, weight: .semibold))

@@ -146,6 +146,7 @@ struct RecentlyDeletedView: View {
                         } label: {
                             Label("Select", systemImage: "checkmark.circle")
                         }
+                        .tint(.primary)
                         
                         Divider()
                         
@@ -154,6 +155,7 @@ struct RecentlyDeletedView: View {
                         } label: {
                             Label("Restore All", systemImage: "arrow.uturn.left")
                         }
+                        .tint(.primary)
                         
                         Button(role: .destructive) {
                             showingEmptyConfirmation = true
@@ -161,6 +163,7 @@ struct RecentlyDeletedView: View {
                             Label("Empty Trash", systemImage: "trash")
                                 .foregroundColor(.red)
                         }
+                        .tint(.red)
                     } label: {
                         Image(systemName: "ellipsis.circle")
                     }
@@ -390,12 +393,15 @@ struct RecentlyDeletedView: View {
                 } label: {
                     Label("Restore", systemImage: "arrow.uturn.left")
                 }
+                .tint(.primary)
+                
                 Button(role: .destructive) {
                     selectedNote = note
                     showingDeleteConfirmation = true
                 } label: {
                     Label("Delete", systemImage: "trash")
                 }
+                .tint(.red)
             }
         }
     }

@@ -219,6 +219,7 @@ struct ArchivedNotesView: View {
                         } label: {
                             Label("Select Notes", systemImage: "checkmark.circle")
                         }
+                        .tint(.primary)
                         
                         Divider()
                         
@@ -232,6 +233,7 @@ struct ArchivedNotesView: View {
                         } label: {
                             Label("Sort by", systemImage: "arrow.up.arrow.down")
                         }
+                        .tint(.primary)
                         
                         Menu {
                             Picker("Sort order", selection: $sortOptions.order) {
@@ -243,6 +245,8 @@ struct ArchivedNotesView: View {
                         } label: {
                             Label("Sort order", systemImage: "arrow.up.arrow.down.circle")
                         }
+                        .tint(.primary)
+                        
                     } label: {
                         Image(systemName: "ellipsis.circle")
                     }
@@ -415,11 +419,14 @@ struct ArchivedNotesView: View {
             } label: {
                 Label("Unarchive Note", systemImage: "arrow.up.bin")
             }
+            .tint(.primary)
+            
             Button(role: .destructive) {
                 noteToDelete = note
             } label: {
                 Label("Delete Note", systemImage: "trash")
             }
+            .tint(.red)
         }
     }
 

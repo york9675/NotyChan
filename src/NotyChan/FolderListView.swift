@@ -238,11 +238,14 @@ struct FolderListView: View {
                                         } label: {
                                             Label("Unlock Folder", systemImage: "lock.open")
                                         }
+                                        .tint(.primary)
+                                        
                                         Button(role: .destructive) {
                                             folderToDelete = folder
                                         } label: {
                                             Label("Delete", systemImage: "trash")
                                         }
+                                        .tint(.primary)
                                     }
                                 } else {
                                     // Unlocked folder row
@@ -291,6 +294,8 @@ struct FolderListView: View {
                                         } label: {
                                             Label("Rename", systemImage: "pencil")
                                         }
+                                        .tint(.primary)
+                                        
                                         Button {
                                             Task {
                                                 let success = await BiometricAuth.authenticate(reason: String(localized: "Lock folder '\(folder.name)'"))
@@ -301,11 +306,15 @@ struct FolderListView: View {
                                         } label: {
                                             Label("Lock Folder", systemImage: "lock")
                                         }
+                                        .tint(.primary)
+                                        
                                         Button(role: .destructive) {
                                             folderToDelete = folder
                                         } label: {
                                             Label("Delete", systemImage: "trash")
                                         }
+                                        .tint(.red)
+                                        
                                     }
                                 }
                             }
@@ -339,6 +348,7 @@ struct FolderListView: View {
                                     } label: {
                                         Label("Select Folders", systemImage: "checkmark.circle")
                                     }
+                                    .tint(.primary)
                                     
                                     Divider()
                                     
@@ -352,6 +362,7 @@ struct FolderListView: View {
                                     } label: {
                                         Label("Sort by", systemImage: "arrow.up.arrow.down")
                                     }
+                                    .tint(.primary)
                                     
                                     Menu {
                                         Picker("Sort order", selection: $sortOptions.order) {
@@ -363,6 +374,7 @@ struct FolderListView: View {
                                     } label: {
                                         Label("Sort order", systemImage: "arrow.up.arrow.down.circle")
                                     }
+                                    .tint(.primary)
                                 } label: {
                                     Image(systemName: "ellipsis.circle")
                                 }

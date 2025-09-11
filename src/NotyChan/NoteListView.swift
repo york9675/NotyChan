@@ -239,6 +239,7 @@ struct NoteListView: View {
                                 } label: {
                                     Label("Rename Folder", systemImage: "pencil")
                                 }
+                                .tint(.primary)
                             }
                             
                             if !notes.isEmpty {
@@ -248,6 +249,7 @@ struct NoteListView: View {
                                 } label: {
                                     Label("Select Notes", systemImage: "checkmark.circle")
                                 }
+                                .tint(.primary)
                                 
                                 Divider()
                                 
@@ -261,6 +263,7 @@ struct NoteListView: View {
                                 } label: {
                                     Label("Sort by", systemImage: "arrow.up.arrow.down")
                                 }
+                                .tint(.primary)
                                 
                                 Menu {
                                     Picker("Sort order", selection: $sortOptions.order) {
@@ -272,12 +275,15 @@ struct NoteListView: View {
                                 } label: {
                                     Label("Sort order", systemImage: "arrow.up.arrow.down.circle")
                                 }
+                                .tint(.primary)
                                 
                                 Divider()
                                 
                                 Toggle(isOn: $sortOptions.groupByDate) {
                                     Label("Group by Date", systemImage: "calendar")
                                 }
+                                .tint(.primary)
+                                
                             }
                         } label: {
                             Image(systemName: "ellipsis.circle")
@@ -492,16 +498,22 @@ struct NoteListView: View {
             } label: {
                 Label(note.isPinned ? "Unpin Note" : "Pin Note", systemImage: note.isPinned ? "pin.slash" : "pin")
             }
+            .tint(.primary)
+            
             Button {
                 noteToMove = note
             } label: {
                 Label("Move", systemImage: "folder")
             }
+            .tint(.primary)
+            
             Button {
                 isArchiveConfirmationPresented = true
             } label: {
                 Label("Archive Note", systemImage: "archivebox")
             }
+            .tint(.primary)
+            
             Button {
                 // Ask for share type from context menu, too
                 noteToShare = note
@@ -509,12 +521,16 @@ struct NoteListView: View {
             } label: {
                 Label("Share Note", systemImage: "square.and.arrow.up")
             }
+            .tint(.primary)
             .disabled(note.isLocked)
+            
             Button(role: .destructive) {
                 isSingleDeleteConfirmationPresented = true
             } label: {
                 Label("Delete", systemImage: "trash")
             }
+            .tint(.red)
+            
         }
         .alert("Delete Note", isPresented: $isSingleDeleteConfirmationPresented) {
             Button("Cancel", role: .cancel) { }
