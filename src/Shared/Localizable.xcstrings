@@ -1095,6 +1095,16 @@
         }
       }
     },
+    "Profile" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "個人檔案"
+          }
+        }
+      }
+    },
     "Recently Deleted" : {
       "localizations" : {
         "zh-Hant" : {
@@ -1666,6 +1676,9 @@
           }
         }
       },
+      "shouldTranslate" : false
+    },
+    "york@york.qzz.io" : {
       "shouldTranslate" : false
     }
   },

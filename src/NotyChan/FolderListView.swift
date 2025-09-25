@@ -127,7 +127,7 @@ struct FolderListView: View {
 
         VStack(spacing: 0) {
             NavigationView {
-                List(selection: isSelecting ? $selectedFolderIds : .constant(Set<UUID>())) {
+                List(selection: isSelecting ? $selectedFolderIds : .constant([])) {
                     NavigationLink(destination: NoteListView(folderFilter: nil)) {
                         HStack {
                             Image(systemName: "note.text")
